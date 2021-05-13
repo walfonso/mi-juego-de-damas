@@ -8,12 +8,11 @@ en cualquier dispositivo. Se crea un sitio web responsive, priorizando el uso de
 
 -[x] HTML
 -[x] CSS
-     -[X] FLEXBOX
 
 
 ## Vista Online
 
-Link: [GitHub Pages] ( https://walfonso.github.io/mi-juego-de-damas/). 
+View the game hosted on [Github Pages](https://walfonso.github.io/mi-juego-de-damas/). 
 
 
 ## License & copyright
