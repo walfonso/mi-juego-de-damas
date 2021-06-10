@@ -94,11 +94,56 @@ footer{
     background-color: khaki;
 }
 
-.cuadro{
+.celda{
     flex-wrap: nowrap;
     align-items: center;
     height: 9vw;
     width: 9vw;
+   
+}
+
+.pieza{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 85% !important;
+  height: 85% !important;
+  border: 2px solid black;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
+  background-color: white;
+  
+}
+
+.pieza23{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color:none;
+}
+
+.piezan{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 85% !important;
+  height: 85% !important;
+  border: 2px solid black;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
+  background-color: grey;
+}
+
+.celdaR{
+    border: 2px solid red;
+   
+}
+
+.ce{
+    border: 2px solid blue;
    
 }
 
@@ -113,8 +158,6 @@ footer{
 .black{
     background-color: black;
 }
-
-
 
 
 
