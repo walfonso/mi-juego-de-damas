@@ -80,6 +80,9 @@ footer{
     
 }
 
+#board {width: max-content; margin: auto;}
+
+
 .flex-tablero{
     display: flex;
     flex-direction: column;
