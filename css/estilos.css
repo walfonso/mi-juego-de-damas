@@ -85,7 +85,7 @@ footer{
 
 .flex-tablero{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     box-shadow: 10px 10px 15px grey;
     margin: 10px 10px 10px 30px;
     width: max-content;
@@ -128,7 +128,7 @@ footer{
 }
 
 .piezan{
-    display: flex;
+display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;

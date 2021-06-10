@@ -4,6 +4,7 @@ divContainer.setAttribute("id", "play");
 document.body.appendChild(divContainer);
 
 var board = document.createElement("div");
+board.classList.add('flex-tablero');
 board.id = "board";
 
 var  pie = document.createElement('footer');
