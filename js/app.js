@@ -4,7 +4,6 @@ divContainer.setAttribute("id", "play");
 document.body.appendChild(divContainer);
 
 var board = document.createElement("div");
-board.classList.add('flex-tablero');
 board.id = "board";
 
 var  pie = document.createElement('footer');
@@ -174,14 +173,3 @@ function initTablero() {
   tablero[7][4].estado = true;
   tablero[7][6].estado = true;
 }
-
-
-
-function parImpar(numero) {
-    if(numero % 2 == 0) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
