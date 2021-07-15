@@ -1,132 +1,143 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: antiquewhite;
-    
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  background-color: antiquewhite;
 }
 
 header {
-    display: flex;
-    justify-content:space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    padding: 20px;
-    background-color:darkorange;
-    text-align:left;
+  display: flex;
+  justify-content:space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 5px;
+  background-color:darkorange;
+  text-align:left;
 }
 
 header a{
-    color: white;
-    padding: 14px 20px;
-    text-decoration: none;
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
 }
 
+.flex-nav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+a{
+  color: #fff;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+.barranav {
+  width: 1140px;
+  margin: 0px auto;
+  background-color: #999999;
+  border-radius: 5px;
+}
+
+#principal{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 1%;
+}
 
 .row{
-    display: flex;
-    justify-content: center;
-    background-color: antiquewhite;
-    width: max-content;
-    
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: antiquewhite;
+  width: max-content;
 }
 
 .row div{
-    align-items: center;
-    height: 9vw;
-    width: 9vw;
-    max-width: 100px;
-    max-height: 100px;
+  align-items: center;
+  height: 4vw;
+  width: 4vw;
+  max-width: 100px;
+  max-height: 100px;
 }
 
-.players{
-    width: 20%;
-    height: auto;
+.players1{
+  align-self: flex-end;
+  width: 20%;
+  height: auto;
+}
+
+.players2{
+  align-self: flex-start;
+  width: 20%;
+  height: auto;
 }
 
 .black{
-    background-color: black;
+  background-color: black;
 }
 
 .white{
-    background-color: white;
-}
-
-
-nav {
-    display: flex;
-    flex-direction: row;
-    background-color: #333;
-}
-
-nav a{
-    color: white;
-    padding: 14px 20px;
-    text-decoration: none;
-}
-
-.row{
-    display: flex;
-    flex-wrap: wrap;
-}
-aside{
-    flex: 30%;
-    background-color: beige;
-    padding: 20px;
-}
-
-section{
-    flex: 70%;
-    background-color: khaki;
-    padding: 20px;
+  background-color: white;
 }
 
 footer{
-    padding: 20px;
-    text-align: center;
-    background-color: burlywood;
+  padding: 5px;
+  text-align: center;
+  background-color: burlywood;
+}
 
+.control{
+  display: flex;
+  justify-content: center;
+  background-color: coral;
+  height: 40px;
+}
+
+#board {
+  width: max-content; 
+  margin: auto;
+  border: 5px solid #999999;
+  border: radius 5px;
 }
 
 /* nuevo codigo*/
 .flex-container{
-    display: flex;
-    justify-content: center;
-  
-    
+  display: flex;
+  justify-content: center;
 }
 
 .flex-tablero{
-    display: flex;
-    flex-direction: column;
-    box-shadow: 10px 10px 15px grey;
-    margin: 10px 10px 10px 30px;
-    width: max-content;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 10px 15px grey;
+  margin: 10px 10px 10px 30px;
+  width: max-content;
 }
 
 .flex-fila{
-    display: flex;
-    width: max-content;
-    background-color: khaki;
+  display: flex;
+  width: max-content;
+  background-color: khaki;
 }
 
 .celda{
-    flex-wrap: nowrap;
-    align-items: center;
-    height: 9vw;
-    width: 9vw;
-   
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 4vw;
+  width: 4vw;
 }
 
 .pieza{
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
   width: 85% !important;
   height: 85% !important;
@@ -134,25 +145,20 @@ footer{
   box-shadow: 2px 2px 5px grey;
   cursor: pointer;
   background-color: white;
-  
 }
 
 .pieza23{
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  
   cursor: pointer;
   background-color:none;
-  
 }
 
 .piezan{
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
   width: 85% !important;
   height: 85% !important;
@@ -160,46 +166,38 @@ footer{
   box-shadow: 2px 2px 5px grey;
   cursor: pointer;
   background-color: grey;
-  
 }
 
 .celdaR{
-    border: 2px solid red;
-   
+  border: 2px solid red;
 }
 
 .ce{
-    border: 2px solid blue;
-   
+  border: 2px solid blue;
 }
 
 .reverse{
-    flex-direction: row-reverse;   
+  flex-direction: row-reverse;   
 }
 
 .white{
-    background-color: white;
+  background-color: white;
 }
 
 .black{
-    background-color: black;
+  background-color: black;
 }
-
-
-
-
 
 @media screen and (max-width: 700px) {
-    #play{
-        flex-direction: column;
-    }
+  #principal{
+    flex-direction: column;
+  }
 
-    .row div {
-        height: 11vw;
-        width: 11vw;
-        max-width: 100px;
-        max-height: 100px;
-      }
+  .row div {
+    height: 6vw;
+    width: 6vw;
+    max-width: 100px;
+    max-height: 100px;
+  }
 }
 
-#board {width: max-content; margin: auto;}
