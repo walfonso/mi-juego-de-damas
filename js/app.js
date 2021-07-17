@@ -36,13 +36,7 @@ start.addEventListener("click", function (e) {
   }
 });
 
-
-
-
-
 // Funciones
-
-
 
 // Genera el Tablero
 function gBoard() {
@@ -173,8 +167,6 @@ function cFichas() {
   document.body.appendChild(pie);
 }
 
-
-
 function borrar(e, count_click, x, y) {
   if (count_click == 1) {
     c = document.getElementById(e.target.id);
@@ -187,8 +179,26 @@ function borrar(e, count_click, x, y) {
     tablero[x][y].estado = 0;
   }
 }
+var posactual = 01 ;// e, count_click, x, y
+mov(1, 1, 7);
+function mov(ficha, posx, posy){ 
+  var ficha = 1 ; // blancas
+  var posx = 0; // fila 0
+  var posy = 3 ; // columna 3
+  if ((ficha ==1) && (posy !==7)){
+    movrowright = posx+1; //posx  1+1= 2
+    movcolumn = posy+1; //posy  0+1 = 1
+    console.log(movrowright.toString()+movcolumn.toString());
+    //posend = concat(posx,posy); // posend = 12
+    console.log("Movimiento permitido:");
+  }
+    console.log("Movimiento no permitido a la derecha'");
 
-function mover(e, count_click, x, y) {
+}
+
+
+
+function mover(posx, poy) {
   if (count_click == 2) {
     p = document.createElement("div");
     p.id = x, y;
