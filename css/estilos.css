@@ -188,6 +188,19 @@ footer{
   background-color: black;
 }
 
+.valid-mov{
+  background-color: #d5dee4;
+}
+
+.mov.com{
+  background-color: #cc332259;
+}
+
+.turn{
+  background-color: brown;
+}
+    
+
 @media screen and (max-width: 700px) {
   #principal{
     flex-direction: column;
