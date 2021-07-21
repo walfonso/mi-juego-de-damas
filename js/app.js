@@ -71,7 +71,7 @@ function generarTablero() {
       color = 'white';
     }
   }
-}
+};
 
 
 // Carga el tablero
@@ -101,7 +101,7 @@ function cargarTablero() {
   principal.appendChild(divContainer);
   divContainer.after(player2);
   document.body.appendChild(pie);
-}
+};
 
 
 // Inicializa el Tablero
@@ -135,7 +135,7 @@ function iniciarTablero() {
   tablero[7][2].estado = 2;
   tablero[7][4].estado = 2;
   tablero[7][6].estado = 2;
-}
+};
 
 
 // Carga las Fichas
@@ -177,7 +177,7 @@ function cargarFichas() {
   principal.appendChild(divContainer);
   divContainer.after(player2);
   document.body.appendChild(pie);
-}
+};
 
 
 // Sugiere los posible movimientos (reglas) 
@@ -205,9 +205,16 @@ function sugerirMov(pieza, posx, posy) {
     celDer = document.querySelector('#c' + celdaDer);
     if (tablero[movFilaDer][movColDer].estado === 0) {
       celDer.classList.replace('black', 'valid-mov');
+    } else if (tablero[movFilaDer][movColDer].estado > 0){
+
+        // ver 
     }
+    
     if (tablero[movFilaIzq][movColIzq].estado === 0) {
       celIzq.classList.replace('black', 'valid-mov');
+    }else if (tablero[movFilaDer][movColDer].estado > 0){
+
+        // ver 
     }
     valorIzq = celIzq.id;
     valorDer = celDer.id;
@@ -243,7 +250,7 @@ function sugerirMov(pieza, posx, posy) {
   posAnterior = pieza.id;
   console.log('Pos Anterior:'+ posAnterior);
   return posAnterior, valorIzq, valorDer;
-}
+};
 
 
 // Limpia la sugerencia de jugars
@@ -253,7 +260,7 @@ function limpiar(valorIzq, valorDer){
   celdaIzq.classList.replace('valid-mov', 'black');
   celdaDer.classList.replace('valid-mov', 'black');
   console.log('Estoy limpiando...');
-}
+};
 
 
 // actualizar tablero
@@ -261,7 +268,7 @@ function actualizarTablero(){
   tablero.forEach(function(u){
     console.log(tablero);
   });
-}
+};
 
 
 // Inicia el Juego
@@ -271,6 +278,16 @@ function iniciar() {
   var player2 = document.querySelector('#player2');
   player1.classList.add('turn');
   var miTablero = document.querySelector('#tableroHTML');
+  var guardar = document.querySelector('#guardarJuego');
+  var recuperar = document.querySelector('#recuperarJuego');
+
+  guardar.addEventListener('click', function (e) {
+    guardarJuego();
+  });
+  recuperar.addEventListener('click', function (e) {
+    recuperarJuego();
+    
+  });
   miTablero.addEventListener('mouseover', function (e) {
     selectCelda(e);
     if (player === 1 && e.target.className === 'pieza') {
@@ -299,7 +316,7 @@ function iniciar() {
     //cambiarTurno(player);
     console.log('player:'+player);
   });
-}
+};
 
 
 // Raliza la juagada
@@ -334,11 +351,7 @@ function jugar(){
     console.log(partida);
     enviarPartida(partida);
   }
-  
-  
-  
- 
-}
+};
 
 
 // Cambia el turno del Jugador
@@ -354,7 +367,7 @@ function cambiarTurno(player){
     player = 1;
   }
   return player;
-}
+};
 
 
 // Borra la fichas de la posición anterior
@@ -364,25 +377,22 @@ function borrar(posAnterior) {
   y = posAnterior.substring(2,3);
   console.log('x:', x);
   console.log('y:', y);
-
-  var p = document.querySelector('#' + posAnterior);
+  var p = document.querySelector('#p'+ x+y);
+  var c = document.querySelector('#c'+x+y);
   if (p.className === 'pieza') {
-    p.classList.remove('pieza');
-     x = posAnterior.substring(1,2);
-  y = posAnterior.substring(2,3);
-  console.log('x:', x);
-  console.log('y:', y);
+    c.removeChild(p);
+    x = posAnterior.substring(1,2);
+    y = posAnterior.substring(2,3);
+    console.log('x:', x);
+    console.log('y:', y);
     tablero[parseInt(x, 10)][parseInt(y, 10)].estado = 0;
     return player = 2;
   } else {
-    p.classList.remove('piezan');
+    c.removeChild(p);
    tablero[parseInt(x, 10)][parseInt(y, 10)].estado = 0;
     return player = 1;
   }
-  console.log('antes: ', tablero[x][y].estado);
-  //tablero[x][y].estado = 0;
-  console.log('Despues: ', tablero[x][y].estado);
-}
+};
 
 
 //Mueve la ficha a la nueva psición
@@ -394,24 +404,23 @@ function mover(valorIzq, player) {
   console.log(valorIzq);
   var c = document.querySelector('#' + valorIzq);
   c.classList.replace('valid-mov', 'black');
+  x = actual.id.substring(1, 2);
+  y = actual.id.substring(2, 3);
+  console.log('X' + parseInt(x, 10));
+  console.log('Y' + parseInt(y, 10));
   if (player === 1) {
     p.classList.add('pieza');
-    //return player= 2;
+    tablero[parseInt(x, 10)][parseInt(y, 10)].estado = 1;
   } else if (player === 2) {
     p.classList.add('piezan');
-    //return player =1;
+    tablero[parseInt(x, 10)][parseInt(y, 10)].estado = 2;
   }
   console.log(p);
   console.log(c);
   c.appendChild(p);
   console.log(valorIzq);
-  x = actual.id.substring(1, 2);
-  y = actual.id.substring(2, 3);
-  console.log('X' + parseInt(x, 10));
-  console.log('Y' + parseInt(y, 10));
-  tablero[parseInt(x, 10)][parseInt(y, 10)].estado = 1;
-  console.log(tablero[parseInt(x, 10)][parseInt(y, 10)].estado);
-}
+};
+
 
 //Devuelve el id y la posición x, y de la celda seleccionada
 function selectCelda(e) {
@@ -420,6 +429,8 @@ function selectCelda(e) {
   y = actual.id.charAt(2);
   return actual.id, x, y;
 };
+
+
 
 // Enviar Partida
 function enviarPartida(partida) {
@@ -440,3 +451,33 @@ function enviarPartida(partida) {
     console.log(error.message);
   });
 };
+
+
+// Guardar Juego
+function guardarJuego(){
+  try {
+    var juego = {
+      'jugador': player,
+      'tablero': tablero,
+    };
+    localStorage.setItem('juego', JSON.stringify(juego));
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+// Recupera el Juego
+function recuperarJuego(){
+  try {
+    var juego = JSON.parse(localStorage.getItem('juego'));
+    if (juego.jugador === 1){ 
+        player = 1;
+    } else {
+      player= 2;
+    }
+    tablero = juego.tablero;
+
+  } catch (error) {
+    console.log(error.message);
+  }
+}
