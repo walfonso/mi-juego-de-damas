@@ -22,6 +22,8 @@ var principal = document.querySelector('#principal');
 var miTablero = document.querySelector('#tableroHTML');
 var turno = [{'estado': true},{'estado': false}];
 var player = 1;
+var partida;
+var movimiento;
 
 
 // Program principal
@@ -294,9 +296,8 @@ function iniciar() {
     console.log('player:'+player);
     jugar(); 
     console.log('player:'+player);
-    cambiarTurno(player);
+    //cambiarTurno(player);
     console.log('player:'+player);
-      
   });
 }
 
@@ -306,10 +307,12 @@ function jugar(){
   if (actual.id === valorIzq) {
     console.log('left:' + valorIzq);
     mover(valorIzq, player);
+    var jugador = player;
     borrar(posAnterior);
     limpiar(valorIzq, valorDer);
     var celdaSug = document.querySelector('#' + valorDer);
     celdaSug.classList.replace('valid-mov', 'black');
+    movimiento = valorIzq;
   }else if (actual.id === valorDer) {
     console.log('right:' + valorDer);
     mover(valorDer, player);
@@ -317,7 +320,24 @@ function jugar(){
     limpiar(valorIzq, valorDer);
     var celdaSug = document.querySelector('#' + valorIzq);
     celdaSug.classList.replace('valid-mov', 'black');
+    movimiento = valorDer;
+  }else {
+    movimiento= 0;
+  }   
+
+  if (movimiento !==0){
+    partida = {
+      'jugador': jugador,
+      'posAnterior': posAnterior,
+      'movimiento': movimiento,
+     }
+    console.log(partida);
+    enviarPartida(partida);
   }
+  
+  
+  
+ 
 }
 
 
