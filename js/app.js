@@ -278,23 +278,26 @@ function sugerirMov(pieza, posx, posy) {
 
 // Comer Ficha
 function comerFicha(celdaOcupada){
-  console.log('Celda Ocupada:' + celdaOcupada);
-  var celdaBorrar = document.querySelector('#'+celdaOcupada);
-  console.log('Celda Borrar:' + celdaBorrar.id);
-  var idPieza = celdaOcupada.substring(1,3);
-  var pieza = document.querySelector('#p'+idPieza);
-  var x= parseInt(idPieza.substring(0,1), 10);
-  var y= parseInt(idPieza.substring(1,2), 10);
-  console.log(x+"x--y"+ y);
-  if (tablero[x][y].estado === 1){
-    contadorFichasBlancas -= 1;  
-    document.getElementById('blancas').innerHTML = `${contadorFichasBlancas}`; 
-  }else if (tablero[x][y].estado === 2){
-    contadorFichasNegras -= 1;  
-    document.getElementById('blancas').innerHTML = `${contadorFichasNegras}`; 
+  if (celdaOcupada !==''){
+    console.log('Celda Ocupada:' + celdaOcupada);
+    var celdaBorrar = document.querySelector('#'+celdaOcupada);
+    console.log('Celda Borrar:' + celdaBorrar.id);
+    var idPieza = celdaOcupada.substring(1,3);
+    var pieza = document.querySelector('#p'+idPieza);
+    var x= parseInt(idPieza.substring(0,1), 10);
+    var y= parseInt(idPieza.substring(1,2), 10);
+    console.log(x+"x--y"+ y);
+    if (tablero[x][y].estado === 1){
+      contadorFichasBlancas -= 1;  
+      document.getElementById('blancas').innerHTML = `${contadorFichasBlancas}`; 
+    }else if (tablero[x][y].estado === 2){
+      contadorFichasNegras -= 1;  
+      document.getElementById('blancas').innerHTML = `${contadorFichasNegras}`; 
+    }
+    tablero[x][y].estado = 0;
+    console.log(pieza);
+    //celdaBorrar.removeChild(pieza);
   }
-  tablero[x][y].estado = 0;
-  celdaBorrar.removeChild(pieza);
 }
 
 
@@ -467,7 +470,7 @@ function mover(valor, player) {
   console.log('valor de celda ocupada en mover:'+celdaOcupada);
   if (celdaOcupada !== ''){
     comerFicha(celdaOcupada);
-    celdaOcupada= '';
+    
   }
   c.appendChild(p);
   console.log(valor);
