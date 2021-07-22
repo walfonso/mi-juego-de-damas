@@ -24,6 +24,9 @@ var turno = [{'estado': true},{'estado': false}];
 var player = 1;
 var partida;
 var movimiento;
+var celdaOcupada;
+var contadorFichasBlancas = 0;
+var contadorFichasNegras = 0;
 
 
 // Program principal
@@ -172,6 +175,11 @@ function cargarFichas() {
     color = 'black';
     tableroHTMLHTML.appendChild(fila);
   }
+  contadorFichasBlancas = 12;
+  contadorFichasNegras = 12;
+  document.getElementById('blancas').innerHTML = `${contadorFichasBlancas}`; 
+  document.getElementById('negras').innerHTML = `${contadorFichasNegras}`; 
+
   divContainer.removeChild(tableroHTML);
   divContainer.appendChild(tableroHTMLHTML);
   principal.appendChild(divContainer);
@@ -182,6 +190,7 @@ function cargarFichas() {
 
 // Sugiere los posible movimientos (reglas) 
 function sugerirMov(pieza, posx, posy) {
+  var colorFicha;
   if ((posy > 0) && (posy < 7)) {
       console.log('pieza'+pieza.className);
     if (pieza.className === 'pieza'){
@@ -189,6 +198,7 @@ function sugerirMov(pieza, posx, posy) {
       var movColDer = parseInt(posy, 10) + 1;    
       var movFilaIzq = parseInt(posx, 10) + 1;
       var movColIzq = parseInt(posy, 10) - 1;
+      colorFicha = 'Blanca';
       console.log('Mov blancas:'+movFilaDer+movColDer+movFilaIzq+movColIzq);
     }else  if (pieza.className === 'piezan') {
       console.log('pieza'+pieza.className);
@@ -196,6 +206,7 @@ function sugerirMov(pieza, posx, posy) {
       var movColDer = parseInt(posy, 10) - 1;    
       var movFilaIzq = parseInt(posx, 10) - 1;
       var movColIzq = parseInt(posy, 10) + 1;
+      colorFicha = 'Negra';
       console.log('Mov. blancas:'+movFilaDer+movColDer+movFilaIzq+movColIzq);
     }
     celdaDer= movFilaDer.toString() + movColDer.toString();
@@ -205,9 +216,21 @@ function sugerirMov(pieza, posx, posy) {
     celDer = document.querySelector('#c' + celdaDer);
     if (tablero[movFilaDer][movColDer].estado === 0) {
       celDer.classList.replace('black', 'valid-mov');
-    } else if (tablero[movFilaDer][movColDer].estado > 0){
-
-        // ver 
+      celdaAux = celDer.id;
+      celdaOcupada = '';
+      
+    }if (tablero[movFilaDer][movColDer].estado === 2 && colorFicha === 'Blanca'  ){
+      celdaOcupada = celdaAux;
+      console.log(celdaOcupada);
+      movFilaDer = parseInt(posx, 10) +2; 
+      movColDer = parseInt(posy, 10) + 2;  
+      celdaDer= movFilaDer.toString() + movColDer.toString();
+      celDer = document.querySelector('#c' + celdaDer);
+      celDer.classList.replace('black', 'valid-mov');
+   
+    //  var movFilaIzq = parseInt(posx, 10) + 1;
+    //  var movColIzq = parseInt(posy, 10) - 1;
+       
     }
     
     if (tablero[movFilaIzq][movColIzq].estado === 0) {
@@ -249,11 +272,34 @@ function sugerirMov(pieza, posx, posy) {
   valorDer = celDer.id;
   posAnterior = pieza.id;
   console.log('Pos Anterior:'+ posAnterior);
-  return posAnterior, valorIzq, valorDer;
+  return posAnterior, valorIzq, valorDer, celdaOcupada;
 };
 
 
-// Limpia la sugerencia de jugars
+// Comer Ficha
+function comerFicha(celdaOcupada){
+  console.log('Celda Ocupada:' + celdaOcupada);
+  var celdaBorrar = document.querySelector('#'+celdaOcupada);
+  console.log('Celda Borrar:' + celdaBorrar.id);
+  var idPieza = celdaOcupada.substring(1,3);
+  var pieza = document.querySelector('#p'+idPieza);
+  var x= parseInt(idPieza.substring(0,1), 10);
+  var y= parseInt(idPieza.substring(1,2), 10);
+  console.log(x+"x--y"+ y);
+  if (tablero[x][y].estado === 1){
+    contadorFichasBlancas -= 1;  
+    document.getElementById('blancas').innerHTML = `${contadorFichasBlancas}`; 
+  }else if (tablero[x][y].estado === 2){
+    contadorFichasNegras -= 1;  
+    document.getElementById('blancas').innerHTML = `${contadorFichasNegras}`; 
+  }
+  tablero[x][y].estado = 0;
+  celdaBorrar.removeChild(pieza);
+}
+
+
+
+// Limpia la sugerencia de jugadas
 function limpiar(valorIzq, valorDer){
   var celdaIzq = document.querySelector('#'+valorIzq);
   var celdaDer = document.querySelector('#'+valorDer);
@@ -334,6 +380,7 @@ function jugar(){
     console.log('right:' + valorDer);
     mover(valorDer, player);
     borrar(posAnterior, x, y );
+    comerFicha(celdaOcupada);
     limpiar(valorIzq, valorDer);
     var celdaSug = document.querySelector('#' + valorIzq);
     celdaSug.classList.replace('valid-mov', 'black');
@@ -396,13 +443,13 @@ function borrar(posAnterior) {
 
 
 //Mueve la ficha a la nueva psición
-function mover(valorIzq, player) {
-  console.log('valorIzq :' + valorIzq);
+function mover(valor, player) {
+  console.log('valor :' + valor);
   var p = document.createElement('div');
-  p.id = 'p' + valorIzq.substring(1, 3);
+  p.id = 'p' + valor.substring(1, 3);
   console.log(p.id);
-  console.log(valorIzq);
-  var c = document.querySelector('#' + valorIzq);
+  console.log(valor);
+  var c = document.querySelector('#' + valor);
   c.classList.replace('valid-mov', 'black');
   x = actual.id.substring(1, 2);
   y = actual.id.substring(2, 3);
@@ -417,8 +464,13 @@ function mover(valorIzq, player) {
   }
   console.log(p);
   console.log(c);
+  console.log('valor de celda ocupada en mover:'+celdaOcupada);
+  if (celdaOcupada !== ''){
+    comerFicha(celdaOcupada);
+    celdaOcupada= '';
+  }
   c.appendChild(p);
-  console.log(valorIzq);
+  console.log(valor);
 };
 
 

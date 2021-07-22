@@ -4,7 +4,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
+  font-size:  1 rem ;
   margin: 0;
   padding: 0;
   background-color: antiquewhite;
@@ -29,6 +29,7 @@ header a{
 .flex-nav {
   display: flex;
   flex-direction: row;
+  margin: revert;
   list-style: none;
 }
 
@@ -68,13 +69,13 @@ a{
 }
 
 .players1{
-  align-self: flex-end;
+  align-self: center;
   width: 20%;
   height: auto;
 }
 
 .players2{
-  align-self: flex-start;
+  align-self: center;
   width: 20%;
   height: auto;
 }
@@ -97,10 +98,10 @@ footer{
   display: flex;
   justify-content: center;
   background-color: coral;
-  height: 40px;
+  height: 60px;
 }
 
-#board {
+#tableroHTML {
   width: max-content; 
   margin: auto;
   border: 5px solid #999999;
