@@ -2,7 +2,10 @@
 var tableroHTML = document.createElement('div');
 tableroHTML.id = 'tableroHTML';
 var pie = document.createElement('footer');
-pie.innerHTML = ('<center><h2> Desarrollos Web</h2></center>');
+pie.classList.add('footer');
+pie.innerHTML = `<div><h2> Walter Alfonso</h2></div>
+<div><h2><a>Reglas del Juego de Damas</a></h2></div>
+`;
 var contarClick = 0;
 var tablero = new Array(8);
 var celda = { id: '', color: '', estado: 0 };
@@ -42,6 +45,7 @@ start.addEventListener('click', function (e) {
     cargarFichas();
     iniciar();
     start.innerHTML = 'Reiniciar el Juego';
+    start.classList.add('buttonactive');
   } else if (cantClick === 2) {
     alert('paso B:' + cantClick);
     start.innerHTML = 'Iniciar el Juego';
@@ -232,7 +236,6 @@ function cargarJuego() {
   divContainer.firstElementChild.remove(tableroHTML);
   divContainer.appendChild(tableroHTMLHTML);
   divContainer.after(player2);
-  //document.body.appendChild(pie);
 };
 
 
@@ -286,7 +289,8 @@ function sugerirMov(pieza, posx, posy) {
       celIzq.classList.replace('black', 'valid-mov');
     }else if (tablero[movFilaDer][movColDer].estado > 0){
 
-        // ver 
+    // nuevo código 
+    
     }
     valorIzq = celIzq.id;
     valorDer = celDer.id;
@@ -328,18 +332,15 @@ function sugerirMov(pieza, posx, posy) {
 // Comer Ficha
 function comerFicha(celdaOcupada){
   if (celdaOcupada !==''){
-    
     var celdaBorrar = document.querySelector('#'+celdaOcupada);
     console.log('comerFicha Celda Borrar:' + celdaBorrar.id);
     var x= parseInt(celdaOcupada.substring(1,2), 10);
     var y= parseInt(celdaOcupada.substring(2,3), 10);
-    var idPieza ="p"+ x.toString()+y.toString();
-    console.log("comerFicha idPieza:"+ idPieza);
+    var idPieza ='p'+ x.toString()+y.toString();
+    //console.log('comerFicha idPieza:'+ idPieza);
     var pieza = document.querySelector('#'+idPieza);
-    
-    //console.log("comerFicha -"x+"x--y"+ y);
-    console.log('comerFicha  Celda Ocupada:' + celdaOcupada);
-    console.log('comerFicha Muestro Pieza:'+pieza);
+    //console.log('comerFicha  Celda Ocupada:' + celdaOcupada);
+    //console.log('comerFicha Muestro Pieza:'+pieza);
     if (pieza !== null){
       celdaBorrar.removeChild(pieza);
       if (tablero[x][y].estado === 1){
@@ -362,13 +363,11 @@ function limpiar(valorIzq, valorDer){
   var celdaDer = document.querySelector('#'+valorDer);
   celdaIzq.classList.replace('valid-mov', 'black');
   celdaDer.classList.replace('valid-mov', 'black');
- // console.log('Estoy limpiando...');
 };
 
 
 // Inicia el Juego
 function iniciar() {
-  //console.log('player: ' + player);
   var player1 = document.querySelector('#player1');
   var player2 = document.querySelector('#player2');
   player1.classList.add('turn');
@@ -380,9 +379,8 @@ function iniciar() {
     guardarJuego();
   });
   recuperar.addEventListener('click', function (e) {
-   //iniciarTablero();
     recuperarJuego();
-    console.log("Jugador recuperado: "+player);
+    console.log('Jugador recuperado: '+player);
     cargarJuego();
     iniciar();
   });
@@ -391,20 +389,16 @@ function iniciar() {
     selectCelda(e);
     if (player === 1 && e.target.className === 'pieza') {
       sugerirMov(actual, x, y);
-      //console.log(e.target.id + '' + e.target.className);
     } else if (player === 2 && e.target.className === 'piezan') {
       sugerirMov(actual, x, y);
-      //console.log(e.target.id + '' + e.target.className);
     }
   });
 
   miTablero.addEventListener('mouseout', function (e) {
     if ((player === 1) && (e.target.className ==='pieza')) {
       limpiar(valorIzq, valorDer);
-    
     } else if ((player === 2) && (e.target.className === 'piezan')) {
       limpiar(valorIzq, valorDer);
-      //console.log(e.target.id + '' + e.target.className);
     }
   });
 
@@ -418,17 +412,13 @@ function iniciar() {
       player1.classList.remove('turn');
     }
     jugar(); 
-    console.log('player:'+player);
-    //cambiarTurno(player);
-    //console.log('player:'+player);
   });
 };
 
 
-// Raliza la juagada
+// Raliza la jugada
 function jugar(){
   if (actual.id === valorIzq) {
-    //console.log('left:' + valorIzq);
     mover(valorIzq, player);
     var jugador = player;
     borrar(posAnterior);
@@ -480,7 +470,6 @@ function cambiarTurno(player){
 
 // Borra la fichas de la posición anterior
 function borrar(posAnterior) {
- // console.log('Pos Anterior: ' + posAnterior);
   x = posAnterior.substring(1,2);
   y = posAnterior.substring(2,3);
   var p = document.querySelector('#p'+ x+y);
@@ -515,7 +504,7 @@ function mover(valor, player) {
     p.classList.add('piezan');
     tablero[parseInt(x, 10)][parseInt(y, 10)].estado = 2;
   }
-  console.log('valor de celda ocupada en mover:'+celdaOcupada);
+  //console.log('valor de celda ocupada en mover:'+celdaOcupada);
   if (celdaOcupada !== ''){
     comerFicha(celdaOcupada);
   }
@@ -531,7 +520,6 @@ function selectCelda(e) {
   y = actual.id.charAt(2);
   return actual.id, x, y;
 };
-
 
 
 // Enviar Partida

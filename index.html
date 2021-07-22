@@ -1,64 +1,65 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 
 <head>
-  <meta charset='UTF-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <link rel='stylesheet' href='css/estilos.css'>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/estilos.css">
   <link rel="stylesheet" href="css/cronometro.css">
+  
   <title>Mi Juego de Damas</title>
 </head>
 
 <body>
   <header>
     <h1>Mi juego de Damas</h1>
-    <ul class='flex-nav'>
+    <ul class="flex-nav">
       <li>
-        <a href='contacto.html'>Contacto</a>
+        <a href="contacto.html">Contacto</a>
       </li> 
       <li>
-        <a href='#'>Login</a>
+        <a href="#">Login</a>
       </li>
       <li>
-        <a href='#'>Registrate</a>
+        <a href="#">Registrate</a>
       </li>
     </ul>
   </header>
-  <div class='barranav'>
-    <ul class='flex-nav'>
-      <li><a href='/'>Juego de Damas </a></li>
-      <li class='active'>Portada</li>
+  <div class="barranav">
+    <ul class="flex-nav">
+      <li><a href="/">Juego de Damas </a></li>
+      <li class="active" style="margin-left: 5px;">Portada</li>
     </ul>
   </div>
-  <div id='principal'>
-    <div id='player1' class='players1'>
+  <div id="principal">
+    <div id="player1" class="players1">
       <h3>JUGADOR 1</h3>
-      <div class='contadorFichas'>
+      <div class="contadorFichas">
         <h3>Fichas:</h3>
         <h3 id="blancas"></h3>
       </div>
     </div>
-    <div id='divContainer'></div>
-    <div id='player2' class='players2'>
+    <div id="divContainer"></div>
+    <div id="player2" class="players2">
       <h3>JUGADOR 2</h3>
-      <div class='contadorFichas'>
+      <div class="contadorFichas">
         <h3>Fichas:</h3>
         <h3 id="negras"></h3>
       </div>
     </div>
   </div>
-  <div id='control' class='control'>
-    <div class='cronometro'>
-      <div id='hms'></div>
-       
-    </div>
-    <div><button id='iniciar'>Iniciar partida</button></div>
-    <div><button id='guardarJuego'>Guardar</button></div>
-    <div><button id='recuperarJuego'>Recuperar</button></div>
+  <div id="control" class="control">
+    <div class="cronometro">
+      <div id="hms"></div>
+    <div class="botones">
+      <button id="iniciar">Iniciar partida</button>
+      <button id="guardarJuego">Guardar</button>
+      <button id="recuperarJuego">Recuperar</button>
+    </div>   
   </div>
-  <script src='js/app.js'></script>
-   <script src='js/cronometro.js'></script>
+  <script src="js/app.js"></script>
+   <script src="js/cronometro.js"></script>
 
 </body>
 </html>
